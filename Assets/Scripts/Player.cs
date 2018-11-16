@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public float energy;
     public float minEnergy = 0.0f;
     public float maxEnergy = 1.0f;
+    int score;
+    bool enemyCollision;
     public Color emptyColour;
     public Color fullColour;
     FollowCamera myCamera;
@@ -21,6 +23,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        score = 0;
         energy = minEnergy;
         rBody = GetComponent<Rigidbody>();
         myCamera = FindObjectOfType<FollowCamera>();
@@ -30,7 +33,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         WorldWrapping();
-        Movement();  
+        Movement();
     }
 
     void WorldWrapping()
@@ -53,16 +56,35 @@ public class Player : MonoBehaviour
             if (energy < maxEnergy)
             {
                 energy += 0.1f;
+                score++;
                 GetComponent<Renderer>().material.color = Color.Lerp(emptyColour, fullColour, energy);
+                Debug.Log("SCORE " + score);
+                Debug.Log("ENERGY " + energy);
             }
             else return;
         }
 
-        if (collision.transform.name.StartsWith("enemy"))
+        if (collision.transform.name.StartsWith("Enemy"))
         {
-            Destroy(transform.gameObject);
-            Debug.Log("GAME OVER, MAN!");
+            enemyCollision = true;
+
+            if (energy > minEnergy)
+            {
+                energy -= 0.1f;
+                GetComponent<Renderer>().material.color = Color.Lerp(emptyColour, fullColour, energy);
+            }
+            else energy = minEnergy;
+
+            if (score > 0)
+            {
+                score--;
+            }
+            else score = 0;
+
+            Debug.Log("SCORE " + score);
+            Debug.Log("ENERGY " + energy);
         }
+
         if (collision.transform.name.StartsWith("blackhole"))
         {
             Destroy(transform.gameObject);
@@ -72,6 +94,7 @@ public class Player : MonoBehaviour
     void Movement()
     {
         transform.forward = myCamera.transform.forward;
+       
         if (Input.GetKey(KeyCode.W))
         {
             transform.position = transform.position + myCamera.transform.forward * speed * Time.deltaTime;
