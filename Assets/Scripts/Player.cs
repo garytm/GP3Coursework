@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public float minEnergy = 0.0f;
     public float maxEnergy = 1.0f;
     int score;
-    bool enemyCollision;
+    public bool enemyCollision;
     public Color emptyColour;
     public Color fullColour;
     FollowCamera myCamera;
