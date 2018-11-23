@@ -19,9 +19,10 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (player.energy != player.minEnergy)
+        if (player.energy > player.maxEnergy / 2)
         {
             SeekPlayer();
+            StealEnergy();
         }
     }
     void SeekPlayer()
@@ -40,8 +41,9 @@ public class Enemy : MonoBehaviour
     {
         if (player.enemyCollision && player.energy > player.minEnergy)
         {
-            energy += 0.1f;
-            Vector4 colour = GetComponent<Renderer>().material.color = new Vector4(0, 0, 1, 1);
+            energy += 0.01f;
+            print("ENEMY ENERGY: " + energy);
+            Vector4 colour = GetComponent<Renderer>().material.color = new Vector4(0, 0, energy, 1);
         }
     }
 

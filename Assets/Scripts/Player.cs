@@ -15,8 +15,8 @@ public class Player : MonoBehaviour
     public Color emptyColour;
     public Color fullColour;
     FollowCamera myCamera;
+    Mushroom mushroomScript;
     Vector3 bounds = new Vector3();
-
     Vector3 UpdatePosition(float x, float z)
     {
         return new Vector3(x, transform.position.y, z);
@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
         energy = minEnergy;
         rBody = GetComponent<Rigidbody>();
         myCamera = FindObjectOfType<FollowCamera>();
+        mushroomScript = FindObjectOfType<Mushroom>();
         bounds = ground.GetComponent<Renderer>().bounds.size / 2;
     }
 
@@ -53,14 +54,14 @@ public class Player : MonoBehaviour
     {
         if (collision.transform.name.StartsWith("collectable"))
         {
-            Destroy(collision.gameObject);
+            score++;
             if (energy < maxEnergy)
             {
-                energy += 0.1f;
-                score++;
+                energy += 0.1f;  
                 GetComponent<Renderer>().material.color = Color.Lerp(emptyColour, fullColour, energy);
                 Debug.Log("SCORE " + score);
                 Debug.Log("ENERGY " + energy);
+                Destroy(collision.gameObject);
             }
             else return;
         }
