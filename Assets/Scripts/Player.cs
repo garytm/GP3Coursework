@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     public Color fullColour;
     FollowCamera myCamera;
     Vector3 bounds = new Vector3();
+
     Vector3 UpdatePosition(float x, float z)
     {
         return new Vector3(x, transform.position.y, z);
