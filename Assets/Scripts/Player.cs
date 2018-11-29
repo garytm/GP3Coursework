@@ -28,7 +28,6 @@ public class Player : MonoBehaviour
         energy = minEnergy;
         rBody = GetComponent<Rigidbody>();
         myCamera = FindObjectOfType<FollowCamera>();
-        mushroomScript = FindObjectOfType<Mushroom>();
         bounds = ground.GetComponent<Renderer>().bounds.size / 2;
     }
 
@@ -42,11 +41,11 @@ public class Player : MonoBehaviour
     {
         if (transform.position.x > bounds.x || transform.position.x < -bounds.x)
         {
-            transform.position = UpdatePosition(transform.position.x * -1f, transform.position.z);
+            transform.position = UpdatePosition(transform.position.x * -1.0f, transform.position.z);
         }
         if (transform.position.z > bounds.z || transform.position.z < -bounds.z)
         {
-            transform.position = UpdatePosition(transform.position.x, transform.position.z * -1f);
+            transform.position = UpdatePosition(transform.position.x, transform.position.z * -1.0f);
         }
     }
 
@@ -54,14 +53,18 @@ public class Player : MonoBehaviour
     {
         if (collision.transform.name.StartsWith("collectable"))
         {
-            score++;
-            if (energy < maxEnergy)
+            mushroomScript = collision.gameObject.GetComponent<Mushroom>();
+            if (mushroomScript.edible == true)
             {
-                energy += 0.1f;  
-                GetComponent<Renderer>().material.color = Color.Lerp(emptyColour, fullColour, energy);
-                Debug.Log("SCORE " + score);
-                Debug.Log("ENERGY " + energy);
-                Destroy(collision.gameObject);
+                score++;
+                if (energy < maxEnergy)
+                {
+                    energy += 0.1f;
+                    GetComponent<Renderer>().material.color = Color.Lerp(emptyColour, fullColour, energy);
+                    Debug.Log("SCORE " + score);
+                    Debug.Log("ENERGY " + energy);
+                    Destroy(collision.gameObject);
+                }
             }
             else return;
         }
@@ -87,7 +90,7 @@ public class Player : MonoBehaviour
             Debug.Log("ENERGY " + energy);
         }
 
-        if (collision.transform.name.StartsWith("blackhole"))
+        if (collision.transform.name.StartsWith("Blackhole"))
         {
             Destroy(transform.gameObject);
             Debug.Log("GAME OVER, MAN!");

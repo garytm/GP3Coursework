@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/GP3Coursework.unity
+- path: Assets/Scenes/Menu.unity
   isLoaded: 1
   isActive: 1

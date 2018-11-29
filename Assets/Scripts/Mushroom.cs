@@ -8,11 +8,12 @@ public class Mushroom : MonoBehaviour
     float maxDeathAge = 150.0f;
     float startTime;
     float mushroomLife;
-    public bool edible = true;
+    public bool edible;
 	void Start ()
     {
         player = GetComponent<Player>();
         mushroomLife = Random.Range(0, maxDeathAge);
+        edible = true;
     }
 	
 	void Update ()
