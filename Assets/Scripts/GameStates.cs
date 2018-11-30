@@ -1,20 +1,19 @@
 ﻿using System.Data;
 using Mono.Data.Sqlite;
 using UnityEngine;
-
+using UnityEngine.UI;
 
     public class GameStates : MonoBehaviour
     {
-
         private string dbPath;
-
+        public Text nameText;
+        public Text score;
+        public Text displayHighScore;
         private void Start()
         {
             dbPath = "URI=file:" + Application.persistentDataPath + "/exampleDatabase.db";
             CreateSchema();
-            InsertScore("GG Meade", 3701);
-            InsertScore("US Grant", 4242);
-            InsertScore("GB McClellan", 107);
+            
             GetHighScores(10);
         }
 
@@ -38,7 +37,7 @@ using UnityEngine;
             }
         }
 
-        public void InsertScore(string highScoreName, int score)
+        public void InsertScore()
         {
             using (var conn = new SqliteConnection(dbPath))
             {
@@ -52,13 +51,13 @@ using UnityEngine;
                     cmd.Parameters.Add(new SqliteParameter
                     {
                         ParameterName = "Name",
-                        Value = highScoreName
+                        Value = nameText
                     });
 
-                    cmd.Parameters.Add(new SqliteParameter
-                    {
-                        ParameterName = "Score",
-                        Value = score
+                cmd.Parameters.Add(new SqliteParameter
+                {
+                    ParameterName = "Score",
+                    Value = Player.score
                     });
 
                     var result = cmd.ExecuteNonQuery();
@@ -90,7 +89,7 @@ using UnityEngine;
                         var id = reader.GetInt32(0);
                         var highScoreName = reader.GetString(1);
                         var score = reader.GetInt32(2);
-                        var text = string.Format("{0}: {1} [#{2}]", highScoreName, score, id);
+                        var text = string.Format("{0}: {1} [#{2}]", nameText, score, id);
                         Debug.Log(text);
                     }
                     Debug.Log("scores (end)");

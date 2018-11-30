@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     Rigidbody rBody;
@@ -10,11 +10,14 @@ public class Player : MonoBehaviour
     public float energy;
     public float minEnergy = 0.0f;
     public float maxEnergy = 1.0f;
-    int score;
+    public float gameTimer = 0.0f;
+    public Text playerName;
+    static public int score;
     public bool enemyCollision;
     public Color emptyColour;
     public Color fullColour;
     FollowCamera myCamera;
+    MainMenu scenes;
     Mushroom mushroomScript;
     Vector3 bounds = new Vector3();
     Vector3 UpdatePosition(float x, float z)
@@ -29,12 +32,14 @@ public class Player : MonoBehaviour
         rBody = GetComponent<Rigidbody>();
         myCamera = FindObjectOfType<FollowCamera>();
         bounds = ground.GetComponent<Renderer>().bounds.size / 2;
+        scenes = FindObjectOfType<MainMenu>();
     }
 
     void Update()
     {
         WorldWrapping();
         Movement();
+        gameTimer += Time.deltaTime;
     }
 
     void WorldWrapping()
@@ -92,15 +97,16 @@ public class Player : MonoBehaviour
 
         if (collision.transform.name.StartsWith("Blackhole"))
         {
-            Destroy(transform.gameObject);
+            //Destroy(transform.gameObject);
             Debug.Log("GAME OVER, MAN!");
+            scenes.GameOver();
         }
     }
     void Movement()
     {
         transform.forward = myCamera.transform.forward;
        
-        if (Input.GetKey(KeyCode.W))
+        if (gameTimer > 0)
         {
             transform.position = transform.position + myCamera.transform.forward * speed * Time.deltaTime;
         }

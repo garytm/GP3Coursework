@@ -26,11 +26,17 @@ public class Enemy : MonoBehaviour
             SeekPlayer();
             StealEnergy();
         }
+        if (transform.position.x < -bounds.x || transform.position.x > bounds.x)
+        {
+            ResetPosition();
+        }
+        if (transform.position.z < -bounds.z || transform.position.z > bounds.z)
+        {
+            ResetPosition();
+        }
     }
     void SeekPlayer()
     {
-        //subtract AI thing’s position from waypoint, player, whatever it is going towards…
-
         Vector3 target = player.transform.position - transform.position;
 
         //normalize it to get direction
