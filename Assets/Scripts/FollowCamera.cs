@@ -10,6 +10,7 @@ public class FollowCamera : MonoBehaviour
     public Transform cameraTransform;
     // This makes a private instance of the camera class named myCamera
     Camera myCamera;
+    GameStates gameStates;
 
     // This float represents the distance between the camera and the player
     private float distance = 10.0f;
@@ -28,15 +29,15 @@ public class FollowCamera : MonoBehaviour
         /// cameraTransform can be simply set to transform as the script will be
         /// attached to the main camera and will be able to use its transform
         cameraTransform = transform;
-        
+        gameStates = FindObjectOfType<GameStates>();
         myCamera = Camera.main;
     }
     private void Update()
     {
-        currentX += Input.GetAxis("Mouse X") * sensitivityX;
-        currentY += Input.GetAxis("Mouse Y") * sensitivityY;
+        currentX += Input.GetAxis("Horizontal") * sensitivityX;
+        currentY += Input.GetAxis("Vertical") * sensitivityY;
 
-        currentY = Mathf.Clamp(currentY, Y_MIN, Y_MAX);
+        currentY = Mathf.Clamp(currentY, Y_MIN, Y_MAX);  
     }
     /// <summary>
     /// Using LateUpdate here allows the camera position to be calculated

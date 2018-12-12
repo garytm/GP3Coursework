@@ -9,7 +9,10 @@ using UnityEngine.UI;
         public Text nameText;
         public Text score;
         public Text displayHighScore;
-        private void Start()
+    public static bool activate;
+    private Rigidbody rigidBody;
+
+    private void Start()
         {
             dbPath = "URI=file:" + Application.persistentDataPath + "/exampleDatabase.db";
             CreateSchema();
@@ -96,4 +99,5 @@ using UnityEngine.UI;
                 }
             }
         }
-    }
+}
+    

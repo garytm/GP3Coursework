@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public float maxEnergy = 1.0f;
     public float gameTimer = 0.0f;
     public Text playerName;
-    static public int score;
+    public static int score;
     public bool enemyCollision;
     public Color emptyColour;
     public Color fullColour;

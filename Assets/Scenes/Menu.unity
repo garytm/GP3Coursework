@@ -218,6 +218,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a6381de795dca64dbed2f78fb33c0d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameText: {fileID: 0}
+  score: {fileID: 0}
+  displayHighScore: {fileID: 0}
 --- !u!1 &67447746
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,8 +370,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: "EAT MUSHROOMS TO GET YOURSELF NICE AND HIGH\nON THE SCOREBOARD.\n\nYOUR
     FRIEND HAS HAD SOME MUSHROOMS AND NOW\nHE'S TRYING TO EAT YOU. OH NO!\n\nHE ALSO
-    TURNS BLUE AND THERE'S A RANDOM BLACK \nHOLE, BE CAREFUL..\n\nUSE W TO MOVE FORWARD
-    AND THE MOUSE TO LOOK AROUND."
+    TURNS BLUE AND THERE'S A RANDOM BLACK \nHOLE, BE CAREFUL..\n\nUSE W/A/S/D TO MOVE/LOOK
+    AROUND."
 --- !u!222 &141693592
 CanvasRenderer:
   m_ObjectHideFlags: 0

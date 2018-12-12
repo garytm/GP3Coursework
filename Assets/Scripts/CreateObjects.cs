@@ -11,7 +11,6 @@ public class CreateObjects : MonoBehaviour
     public GameObject mushroom;
     int maxCollectables = 60;
     int maxEnemies = 4;
-    int maxBlackholes = 8;
 
     void Start()
     {
