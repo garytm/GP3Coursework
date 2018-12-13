@@ -52,13 +52,16 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CreateObjects.cs" />
+     <Compile Include="Assets\Scripts\DBManager.cs" />
      <Compile Include="Assets\Scripts\Enemy.cs" />
      <Compile Include="Assets\Scripts\FollowCamera.cs" />
-     <Compile Include="Assets\Scripts\GameStates.cs" />
+     <Compile Include="Assets\Scripts\Highscores.cs" />
+     <Compile Include="Assets\Scripts\HighScoreScript.cs" />
      <Compile Include="Assets\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Scripts\Mushroom.cs" />
      <Compile Include="Assets\Scripts\Player.cs" />
      <Compile Include="Assets\Scripts\PlayerScore.cs" />
+     <Compile Include="Assets\Scripts\SaveData.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />

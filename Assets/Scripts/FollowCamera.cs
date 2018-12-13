@@ -10,7 +10,6 @@ public class FollowCamera : MonoBehaviour
     public Transform cameraTransform;
     // This makes a private instance of the camera class named myCamera
     Camera myCamera;
-    GameStates gameStates;
 
     // This float represents the distance between the camera and the player
     private float distance = 10.0f;
@@ -29,7 +28,6 @@ public class FollowCamera : MonoBehaviour
         /// cameraTransform can be simply set to transform as the script will be
         /// attached to the main camera and will be able to use its transform
         cameraTransform = transform;
-        gameStates = FindObjectOfType<GameStates>();
         myCamera = Camera.main;
     }
     private void Update()

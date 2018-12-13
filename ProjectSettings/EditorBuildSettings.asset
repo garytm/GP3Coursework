@@ -14,7 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 345ade177836e364fb266d0e241c0aab
-  - enabled: 1
-    path: Assets/Scenes/HighScoreTable.unity
+  - enabled: 0
+    path: 
     guid: 2eb9513ba985ceb459902e47b6802212
-  m_configObjects: {}

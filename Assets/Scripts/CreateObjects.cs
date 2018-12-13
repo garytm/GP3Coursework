@@ -5,6 +5,7 @@ using UnityEngine;
 public class CreateObjects : MonoBehaviour
 {
     Mushroom mushroomScript;
+    MainMenu scenes;
     public GameObject ground;
     Vector3 bounds = new Vector3();
     List<GameObject> collectables;
@@ -14,11 +15,16 @@ public class CreateObjects : MonoBehaviour
 
     void Start()
     {
+        //setting the bounds within which the mushrooms may spawn
         bounds = ground.GetComponent<Renderer>().bounds.size / 2;
+        //ensuring mushrooms spawn using the lists below
         collectables = CreateCollectables();
         mushroomScript = GetComponent<Mushroom>();
+        scenes = FindObjectOfType<MainMenu>();
     }
-
+    void Update()
+    {
+    }
     private List<GameObject> CreateCollectables()
     {
         List<GameObject> collectables = new List<GameObject>();
@@ -27,7 +33,6 @@ public class CreateObjects : MonoBehaviour
         {
             collectables.Add(CreateCollectable(i));
         }
-
         return collectables;
     }
 

@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public float maxVelocity = 0.1f;
     public float maxSpeed = 0.1f;
-    float energy;
+    public float energy;
     private Vector3 velocity;
     public Player player;
     public GameObject ground;
@@ -99,7 +99,7 @@ public class Enemy : MonoBehaviour
         //finally add some propulsion to move the object forward based on this rotation
         //mine is a little more complicated than below but you hopefully get the idea…
 
-        transform.position += transform.forward * 10.0f * Time.deltaTime;
+        transform.position += transform.forward * 5.0f * Time.deltaTime;
     }
   
     void StealEnergy()
@@ -107,7 +107,6 @@ public class Enemy : MonoBehaviour
         if (player.enemyCollision && player.energy > player.minEnergy)
         {
             energy += 0.01f;
-            print("ENEMY ENERGY: " + energy);
             Vector4 colour = GetComponent<Renderer>().material.color = new Vector4(0, 0, energy, 1);
         }
     }
