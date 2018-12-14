@@ -39,9 +39,9 @@ public class SaveData : MonoBehaviour
             using (IDbCommand dbCommand = dbConnection.CreateCommand())
             {
                 string SQLQuery = String.Format("CREATE TABLE IF NOT EXISTS playerData (id INTEGER PRIMARY KEY AUTOINCREMENT, name STRING, energy FLOAT, posX FLOAT, posY FLOAT, posZ FLOAT);");
-                string SQLQuery2 = String.Format("CREATE TABLE IF NOT EXISTS enemyData (id INT, energy FLOAT, posX FLOAT, posY FLOAT, posZ FLOAT);");
-                string SQLQuery3 = String.Format("CREATE TABLE IF NOT EXISTS mushroomData (id INT, maxAge FLOAT, age FLOAT, posX FLOAT, posY FLOAT, posZ FLOAT, scaleX FLOAT, scaleY FLOAT, scaleZ FLOAT);");
-                string SQLQuery4 = String.Format("CREATE TABLE IF NOT EXISTS blackHoleData (id INT, posX FLOAT, posY FLOAT, posZ FLOAT);");
+                string SQLQuery2 = String.Format("CREATE TABLE IF NOT EXISTS enemyData (id INTEGER, energy FLOAT, posX FLOAT, posY FLOAT, posZ FLOAT);");
+                string SQLQuery3 = String.Format("CREATE TABLE IF NOT EXISTS mushroomData (id INTEGER, maxDeathAge FLOAT, age FLOAT, posX FLOAT, posY FLOAT, posZ FLOAT, scaleX FLOAT, scaleY FLOAT, scaleZ FLOAT);");
+                string SQLQuery4 = String.Format("CREATE TABLE IF NOT EXISTS blackHoleData (id INTEGER, posX FLOAT, posY FLOAT, posZ FLOAT);");
                 dbCommand.CommandText = SQLQuery;
                 dbCommand.CommandText = SQLQuery2;
                 dbCommand.CommandText = SQLQuery3;
